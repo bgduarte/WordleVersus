@@ -1,0 +1,1 @@
+from modules.consultorDicionario import ConsultorDicionario

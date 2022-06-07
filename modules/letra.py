@@ -4,11 +4,11 @@ class Letra:
 
     # TODO: 
     def __init__(self, cor: str, letra: str):
-        self._cor = cor
-        self._letra = letra
+        self.__cor = cor
+        self.__letra = letra
 
     # TODO: 
-    def caracter_valido(self, teclaPressionada: str) -> bool:
+    def caracter_valido(self, tecla_pressionada: str) -> bool:
         pass
 
     # TODO:     
@@ -20,7 +20,7 @@ class Letra:
         pass
 
     def obterLetra(self) -> str:
-        return self._letra
+        return self.__letra
 
     def obterCor(self) -> str:
-        return self._cor
+        return self.__cor

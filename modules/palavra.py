@@ -4,9 +4,9 @@ class Palavra:
 
     # TODO
     def __init__(self, letras: list, jogador: Jogador, letraAtual: int) -> None:
-        self._letras = letras
-        self._jogador = jogador
-        self._letraAtual = letraAtual
+        self.__letras = letras
+        self.__jogador = jogador
+        self.__letraAtual = letraAtual
 
     # TODO
     def preencher_letra_atual(self, tecla_pressionada: str) -> None:
@@ -37,4 +37,4 @@ class Palavra:
         pass
 
     def definir_jogador(self, jogador: Jogador) -> None:
-        self._jogador = jogador
+        self.__jogador = jogador
