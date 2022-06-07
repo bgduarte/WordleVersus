@@ -1,12 +1,15 @@
 from jogador import Jogador
+from letra import Letra
 
 class Palavra:
 
     # TODO
-    def __init__(self, letras: list, jogador: Jogador, letraAtual: int) -> None:
-        self.__letras = letras
-        self.__jogador = jogador
-        self.__letraAtual = letraAtual
+    def __init__(self) -> None:
+        self.__letras = []
+        for i in range(5):
+            self.__letras.append(Letra())
+        self.__jogador = None__ehVencedor
+        self.__letraAtual = 0
 
     # TODO
     def preencher_letra_atual(self, tecla_pressionada: str) -> None:

@@ -3,9 +3,9 @@
 class Letra:
 
     # TODO: 
-    def __init__(self, cor: str, letra: str):
-        self.__cor = cor
-        self.__letra = letra
+    def __init__(self):
+        self.__cor = "cinza"
+        self.__letra = " "
 
     # TODO: 
     def caracter_valido(self, tecla_pressionada: str) -> bool:
