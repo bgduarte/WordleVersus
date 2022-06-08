@@ -2,25 +2,30 @@
 
 class Letra:
 
-    # TODO: 
+    
     def __init__(self):
-        self.__cor = "cinza"
-        self.__letra = " "
+        self.__cor = "branca"
+        self.__letra = ""
 
     # TODO: 
-    def caracter_valido(self, tecla_pressionada: str) -> bool:
-        pass
+    def caracter_valido(tecla_pressionada: str) -> bool:
+        return True
 
-    # TODO:     
+ 
     def preencher(self, letra: str) -> None:
-        pass
+        self.__letra = letra.upper()
 
-    # TODO: 
+
     def apagar(self) -> None:
-        pass
+        self.__letra = ""
 
-    def obterLetra(self) -> str:
+
+    def obter_letra(self) -> str:
         return self.__letra
 
-    def obterCor(self) -> str:
+
+    def obter_cor(self) -> str:
         return self.__cor
+
+    def definir_cor(self, cor: str) -> None:
+        self.__cor = cor

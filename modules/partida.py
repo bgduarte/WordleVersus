@@ -1,34 +1,36 @@
-from xmlrpc.client import Boolean
-from jogador import Jogador
-from consultorDicionario import ConsultorDicionario
-from palavra import Palavra
+from modules.jogador import Jogador
+from modules.consultorDicionario import ConsultorDicionario
+from modules.palavra import Palavra
+from modules.interfaceJogador import InterfaceJogador
+
 
 class Partida:
-    # TODO
-    # Atribbutes
     __jogador1: Jogador = None
     __jogador2: Jogador = None
     __palavraSecreta: str = None
     __tentativas: list = []
-    __emAndamento: Boolean = False
-    __interface = None
+    __emAndamento: bool = False
+    interface = None
 
-    # TODO
+
     def iniciar_partida() -> None:
         Partida.__tentativas = [Palavra()]
 
-        Partida.__jogador1 = Jogador(cor="azul", ehSeuTurno=True)
-        Partida.__jogador2 = Jogador(cor="vermelho", ehSeuTurno=False)
+        Partida.__jogador1 = Jogador(cor="azul", eh_seu_turno=True)
+        Partida.__jogador2 = Jogador(cor="vermelho", eh_seu_turno=False)
 
-        Partida.__palavraSecreta = ConsultorDicionario.pegar_palavra_aleatoria()
+        # TODO 
+        Partida.__palavraSecreta = "WRITE" # ConsultorDicionario.pegar_palavra_aleatoria().upper()
 
-        # TODO: Instanciar interface e chamar atualizar_interface()
+        Partida.interface = InterfaceJogador(Partida)
+        Partida.interface.atualizar_interface()
+        Partida.__emAndamento = True # Arrumar no diagrama?
 
-    # TODO
-    def preencher_letra(tecla_pressionada: str) -> None:
+
+    def preencher_letras(tecla_pressionada: str) -> None:
         if Partida.__emAndamento:
             Partida.__tentativas[-1].preencher_letra_atual(tecla_pressionada)
-            # TODO atualizar_interface()
+            Partida.interface.atualizar_interface()
 
 
     def passar_turno() -> None:
@@ -44,39 +46,47 @@ class Partida:
         else:
             return Partida.__jogador2
 
-    # TODO
+
     def efetuar_troca_de_turno() -> None:
+        print ("Efetuando troca de turno")
         Partida.__jogador1.passar_turno()
         Partida.__jogador2.passar_turno()
-        # TODO: atualizar_interface()
+        Partida.interface.atualizar_interface()
 
-    # TODO
+
+
     def realizar_tentativa() -> None:
         if Partida.__emAndamento:
-            palavraValida = Partida.verificar_validade_de_palavra
-            if palavraValida:
-                Palavra.__tentativas[-1].avaliar_palavra(Partida.__palavraSecreta, Partida.jogador_da_vez())
-                Palavra.avaliar_encerramento_de_partida()
+            if Partida.verificar_validade_de_palavra():
+                Partida.__tentativas[-1].avaliar_palavra(Partida.__palavraSecreta, Partida.jogador_da_vez())
+                Partida.avaliar_encerramento_de_partida()
                 if Partida.__emAndamento:
                     Partida.efetuar_troca_de_turno()
                 else:
-                    pass
-                    # TODO: atualizar_interface()
+                    Partida.interface.atualizar_interface()
 
 
-    def verificar_validade_de_palavra() -> Boolean:
+    def verificar_validade_de_palavra() -> bool:
         if Partida.__tentativas[-1].palavra_cheia():
             palavraStr = Partida.__tentativas[-1].obter_palavra_str()
-            if (ConsultorDicionario.palavra_existe(palavraStr)):
+            if (ConsultorDicionario.palavra_existe(palavraStr.lower())):
                 return True
 
         return False
 
-    # TODO
+    
     def avaliar_encerramento_de_partida() -> None:
-        pass
+        print ('Jogador 1 eh vencedor: ' + str(Partida.__jogador1.obter_eh_vencedor()))
+        print ('Jogador 2 eh vencedor: ' + str(Partida.__jogador2.obter_eh_vencedor()))
+        if (Partida.__jogador1.obter_eh_vencedor() or Partida.__jogador2.obter_eh_vencedor()):
+            Partida.__emAndamento = False
+        else:
+            if (len(Partida.__tentativas) == 6):
+                Partida.__emAndamento = False
+            else:
+                Partida.__tentativas.append(Palavra())
 
-    # TODO
+
     def obter_tentativas() -> list:
-        pass
+        return Partida.__tentativas
         
