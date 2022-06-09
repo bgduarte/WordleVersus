@@ -1,7 +1,6 @@
 from modules.jogador import Jogador
 from modules.consultorDicionario import ConsultorDicionario
 from modules.palavra import Palavra
-from modules.interfaceJogador import InterfaceJogador
 
 
 class Partida:
@@ -10,7 +9,6 @@ class Partida:
     __palavraSecreta: str = None
     __tentativas: list = []
     __emAndamento: bool = False
-    interface = None
 
 
     def iniciar_partida() -> None:
@@ -22,15 +20,14 @@ class Partida:
         # TODO 
         Partida.__palavraSecreta = "WRITE" # ConsultorDicionario.pegar_palavra_aleatoria().upper()
 
-        Partida.interface = InterfaceJogador(Partida)
-        Partida.interface.atualizar_interface()
         Partida.__emAndamento = True # Arrumar no diagrama?
+        # Partida.interface.atualizar_interface()
 
 
     def preencher_letras(tecla_pressionada: str) -> None:
         if Partida.__emAndamento:
             Partida.__tentativas[-1].preencher_letra_atual(tecla_pressionada)
-            Partida.interface.atualizar_interface()
+            # Partida.interface.atualizar_interface()
 
 
     def passar_turno() -> None:
@@ -48,10 +45,9 @@ class Partida:
 
 
     def efetuar_troca_de_turno() -> None:
-        print ("Efetuando troca de turno")
         Partida.__jogador1.passar_turno()
         Partida.__jogador2.passar_turno()
-        Partida.interface.atualizar_interface()
+        # Partida.interface.atualizar_interface()
 
 
 
@@ -63,7 +59,8 @@ class Partida:
                 if Partida.__emAndamento:
                     Partida.efetuar_troca_de_turno()
                 else:
-                    Partida.interface.atualizar_interface()
+                    pass
+                    # Partida.interface.atualizar_interface()
 
 
     def verificar_validade_de_palavra() -> bool:
@@ -76,8 +73,6 @@ class Partida:
 
     
     def avaliar_encerramento_de_partida() -> None:
-        print ('Jogador 1 eh vencedor: ' + str(Partida.__jogador1.obter_eh_vencedor()))
-        print ('Jogador 2 eh vencedor: ' + str(Partida.__jogador2.obter_eh_vencedor()))
         if (Partida.__jogador1.obter_eh_vencedor() or Partida.__jogador2.obter_eh_vencedor()):
             Partida.__emAndamento = False
         else:

@@ -5,7 +5,7 @@ class Letra:
     
     def __init__(self):
         self.__cor = "branca"
-        self.__letra = ""
+        self.__letra = " "
 
     # TODO: 
     def caracter_valido(tecla_pressionada: str) -> bool:
@@ -17,7 +17,7 @@ class Letra:
 
 
     def apagar(self) -> None:
-        self.__letra = ""
+        self.__letra = " "
 
 
     def obter_letra(self) -> str:

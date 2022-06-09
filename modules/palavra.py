@@ -14,10 +14,8 @@ class Palavra:
 
     def preencher_letra_atual(self, tecla_pressionada: str) -> None:
         if Letra.caracter_valido(tecla_pressionada):
-            
-            if tecla_pressionada == ";": #substituir pelo apagar da interface
+            if tecla_pressionada == "\b": #substituir pelo apagar da interface
                 if not self.palavra_vazia():
-                    print ("Apagando letra")
                     self.__letras[self.__letraAtual-1].apagar()
                     self.__letraAtual -= 1
             else:
