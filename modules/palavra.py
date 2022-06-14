@@ -1,20 +1,18 @@
 from modules.jogador import Jogador
 from modules.letra import Letra
 
-class Palavra:
-
-    
-    def __init__(self) -> None:
+class Palavra:  
+    def __init__(self, jogador) -> None:
         self.__letras = []
         for i in range(5):
             self.__letras.append(Letra())
-        self.__jogador = None
+        self.__jogador = jogador
         self.__letraAtual = 0
 
 
     def preencher_letra_atual(self, tecla_pressionada: str) -> None:
         if Letra.caracter_valido(tecla_pressionada):
-            if tecla_pressionada == "\b": #substituir pelo apagar da interface
+            if tecla_pressionada == "\b":
                 if not self.palavra_vazia():
                     self.__letras[self.__letraAtual-1].apagar()
                     self.__letraAtual -= 1

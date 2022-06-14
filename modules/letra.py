@@ -7,9 +7,9 @@ class Letra:
         self.__cor = "branca"
         self.__letra = " "
 
-    # TODO: 
+     
     def caracter_valido(tecla_pressionada: str) -> bool:
-        return True
+        return (tecla_pressionada.isascii() and tecla_pressionada.isalpha()) or tecla_pressionada == "\b"
 
  
     def preencher(self, letra: str) -> None:
