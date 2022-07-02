@@ -1,4 +1,3 @@
-from turtle import Terminator
 from modules.jogador import Jogador
 from modules.consultorDicionario import ConsultorDicionario
 from modules.palavra import Palavra
@@ -60,9 +59,7 @@ class Partida:
     def verificar_validade_de_palavra(self) -> bool:
         if self.__tentativas[-1].palavra_cheia():
             palavraStr = self.__tentativas[-1].obter_palavra_str()
-            if (ConsultorDicionario.palavra_existe(palavraStr.lower())):
-                return True
-
+            return ConsultorDicionario.palavra_existe(palavraStr.lower())
         return False
 
     

@@ -43,13 +43,12 @@ class Palavra:
 
     
     def avaliar_palavra(self, palavra_secreta: str, jogador_que_tentou: Jogador) -> None:
-        print (f'Avaliando palavra:{self.obter_palavra_str()} com a palavra secreta:{palavra_secreta}')
         self.__jogador = jogador_que_tentou
         acertouPalavra = True
         for i in range (len(self.__letras)):
-            letra = self.__letras[i].obter_letra()
-            if letra in palavra_secreta:
-                if letra == palavra_secreta[i]:
+            char = self.__letras[i].obter_letra()
+            if char in palavra_secreta:
+                if char == palavra_secreta[i]:
                     self.__letras[i].definir_cor("verde")
                 else:
                     self.__letras[i].definir_cor("amarelo")

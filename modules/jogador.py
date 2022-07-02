@@ -32,4 +32,7 @@ class Jogador:
 
     def obter_cor(self) -> str:
         return self.__cor
+
+    def pode_passar_turno(self) -> bool:
+        return self.__podePassarTurno
     
